@@ -20,7 +20,18 @@ export const GQLProvider = ({ children }: PropsWithChildren) => {
 
     const client = createClient({
       url,
-      exchanges: [cacheExchange({}), ssr, fetchExchange],
+      exchanges: [cacheExchange({
+        updates: {
+          Mutation: {
+            deleteIssue(_result, args, cache, _info) {
+              cache.invalidate({
+                __typename: 'Issue',
+                id: args.id,
+              })
+            }
+          }
+        }
+      }), ssr, fetchExchange],
       fetchOptions: () => {
         const token = getToken();
 

@@ -21,3 +21,9 @@ export const EditIssueMutation = graphql(`
     }
   }
 `);
+
+export const DeleteIssueMutation = graphql(`
+  mutation DeleteIssueMutation($input: ID!) {
+    deleteIssue(id: $input)
+  }
+`);
