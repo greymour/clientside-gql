@@ -1,6 +1,6 @@
-import { gql } from "urql";
+import { graphql } from "@/__generated__";
 
-export const CreateIssueMutation = gql`
+export const CreateIssueMutation = graphql(`
   mutation CreateIssueMutation($input: CreateIssueInput!) {
     createIssue(input: $input) {
       createdAt
@@ -9,4 +9,15 @@ export const CreateIssueMutation = gql`
       id
     }
   }
-`;
+`);
+
+export const EditIssueMutation = graphql(`
+  mutation EditIssueMutation($input: EditIssueInput!) {
+    editIssue(input: $input) {
+      createdAt
+      id
+      name
+      status
+    }
+  }
+`);

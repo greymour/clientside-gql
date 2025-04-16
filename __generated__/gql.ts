@@ -17,12 +17,14 @@ type Documents = {
     "\n  mutation SigninMutation($input: AuthInput!) {\n    signin(input: $input) {\n      token\n    }\n  }\n": typeof types.SigninMutationDocument,
     "\n  mutation SignupMutation($input: AuthInput!) {\n    createUser(input: $input) {\n    token\n    }\n  }\n": typeof types.SignupMutationDocument,
     "\n  mutation CreateIssueMutation($input: CreateIssueInput!) {\n    createIssue(input: $input) {\n      createdAt\n      name\n      status\n      id\n    }\n  }\n": typeof types.CreateIssueMutationDocument,
+    "\n  mutation EditIssueMutation($input: EditIssueInput!) {\n    editIssue(input: $input) {\n      createdAt\n      id\n      name\n      status\n    }\n  }\n": typeof types.EditIssueMutationDocument,
     "\n  query IssuesQuery {\n    issues {\n      content\n      createdAt\n      id\n      name\n      status\n    }\n  }\n": typeof types.IssuesQueryDocument,
 };
 const documents: Documents = {
     "\n  mutation SigninMutation($input: AuthInput!) {\n    signin(input: $input) {\n      token\n    }\n  }\n": types.SigninMutationDocument,
     "\n  mutation SignupMutation($input: AuthInput!) {\n    createUser(input: $input) {\n    token\n    }\n  }\n": types.SignupMutationDocument,
     "\n  mutation CreateIssueMutation($input: CreateIssueInput!) {\n    createIssue(input: $input) {\n      createdAt\n      name\n      status\n      id\n    }\n  }\n": types.CreateIssueMutationDocument,
+    "\n  mutation EditIssueMutation($input: EditIssueInput!) {\n    editIssue(input: $input) {\n      createdAt\n      id\n      name\n      status\n    }\n  }\n": types.EditIssueMutationDocument,
     "\n  query IssuesQuery {\n    issues {\n      content\n      createdAt\n      id\n      name\n      status\n    }\n  }\n": types.IssuesQueryDocument,
 };
 
@@ -52,6 +54,10 @@ export function graphql(source: "\n  mutation SignupMutation($input: AuthInput!)
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation CreateIssueMutation($input: CreateIssueInput!) {\n    createIssue(input: $input) {\n      createdAt\n      name\n      status\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation CreateIssueMutation($input: CreateIssueInput!) {\n    createIssue(input: $input) {\n      createdAt\n      name\n      status\n      id\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation EditIssueMutation($input: EditIssueInput!) {\n    editIssue(input: $input) {\n      createdAt\n      id\n      name\n      status\n    }\n  }\n"): (typeof documents)["\n  mutation EditIssueMutation($input: EditIssueInput!) {\n    editIssue(input: $input) {\n      createdAt\n      id\n      name\n      status\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
