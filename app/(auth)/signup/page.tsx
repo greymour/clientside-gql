@@ -3,13 +3,25 @@
 import { Button, Input } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { SignupMutation } from '@/gql/auth/mutations'
+import { setToken } from '@/utils/token'
+import { useMutation } from 'urql'
 
 const SignupPage = () => {
   const [state, setState] = useState({ password: '', email: '' })
   const router = useRouter()
+  // I don't care about the result value returned by useMutation since this is a simple demo
+  // it has extra data for eg. loading states, but I can just await the promise below in the handler
+  const [_, signup] = useMutation(SignupMutation);
 
   const handleSignup = async (e) => {
     e.preventDefault()
+    const result = await signup({ input: state });
+
+    if (result.data?.createUser?.token) {
+      setToken(result.data.createUser.token);
+      router.push('/');
+    }
   }
 
   return (
